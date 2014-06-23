@@ -1,12 +1,12 @@
-from wheat_class import *
-from potato_class import *
+from cow_class import *
+from sheep_class import *
 
 def display_menu():
     print()
-    print("Which crop would you like to create?: ")
+    print("Which animal would you like to create?: ")
     print()
-    print("1. Potato")
-    print("2. Wheat")
+    print("1. Cow")
+    print("2. Sheep")
     print()
     print("Please select an option from the above menu")
 
@@ -28,14 +28,14 @@ def create_crop():
     display_menu()
     choice = select_option()
     if choice == 1:
-        new_crop = Potato()
+        new_animal = Cow()
     elif choice == 2:
-        new_crop = Wheat()
-    return new_crop
+        new_animal = Sheep()
+    return new_animal
 
 def main():
-    new_crop = create_crop()
-    manage_crop(new_crop)
+    new_animal = create_crop()
+    manage_animal(new_animal)
 
 if __name__ == "__main__":
     main()

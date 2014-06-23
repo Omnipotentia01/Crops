@@ -1,38 +1,43 @@
-from cropclass import *
+from crop_class import *
 
 class Wheat(Crop):
-    """ A representaion of a wheat crop"""
-    #Constructor
+    """A wheat crop"""
+
+    #constructor
     def __init__(self):
-        #Call super constructor
-        super().__init__(1,3,6)
+        #call the parent class  constructor with the default values
+        #for wheat, growth rate = 1, light need = 4, water need = 7
+        super().__init__(1,4,7)
         self._type = "Wheat"
 
-    #Override previous methods for subclass (grow in this case)
-        def grow(self,light,water):
-            if light >= self._light_need and water >= self._water_need:
-                if self._status == "Seedling" and water > self._water_need:
-                    self.growth += self._growth_rate * 1.5
-                elif self._status == "Young" and water > self.water_need:
-                    self._growth += self._growth_rate *1.25
-                elif self._status == "Old" and water > self.water_need:
-                    self._growth += self._growth_rate / 2               
-                else:
-                    self._growth += self._growth_rate
-            #increment day growing
-            self._days_growing += 1
-            #update status
-            self._update_status()
+    #override grow for subclass
+    def grow(self,light,water):
+        if light >= self._light_need and water >= self._water_need:
+            if self._status == "Seedling": 
+                self._growth += self._growth_rate * 1.5
+            elif self._status == "Young": 
+                self._growth += self._growth_rate * 1.25
+            elif self._status == "Old":
+                self._growth += self._growth_rate / 2
+            else:
+                self._growth =+ self._growth_rate
+        #increment days gorwing
+        self._days_growing += 1
+        #update status
+        self._update_status()
+                
+
 
 def main():
-    #Create Wheat crop
+    #create a new wheat crop
     wheat_crop = Wheat()
     print(wheat_crop.report())
-    #manualy grow the crop
+    #manually grow crop
     manual_grow(wheat_crop)
     print(wheat_crop.report())
     manual_grow(wheat_crop)
-    print(wheat_crop.report())            
+    print(wheat_crop.report())
 
 if __name__ == "__main__":
     main()
+    
